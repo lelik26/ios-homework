@@ -12,9 +12,9 @@ class FeedViewController: UIViewController {
 
     private lazy var transitionButtonFirst: UIButton = {
         let button = UIButton()
-        button.layer.cornerRadius = 20
+        button.layer.cornerRadius = 10
         button.clipsToBounds = true
-        button.backgroundColor = .systemGreen
+        button.backgroundColor = .systemBlue
         button.setTitle("ButtonFirst", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(didTapTransitionButton), for: .touchUpInside)
@@ -24,9 +24,9 @@ class FeedViewController: UIViewController {
     
     private lazy var transitionButtonSecond: UIButton = {
         let button = UIButton()
-        button.layer.cornerRadius = 20
+        button.layer.cornerRadius = 10
         button.clipsToBounds = true
-        button.backgroundColor = .systemBrown
+        button.backgroundColor = .systemGreen
         button.setTitle("ButtonSecond", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(didTapTransitionButton), for: .touchUpInside)
@@ -63,13 +63,15 @@ class FeedViewController: UIViewController {
     
     private func activateConstraints() {
         
-        
-        self.stackButtonView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.stackButtonView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        
-        self.stackButtonView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        self.stackButtonView.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        
+        NSLayoutConstraint.activate([
+            self.stackButtonView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+//            self.stackButtonView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            self.stackButtonView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.stackButtonView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.stackButtonView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+//            self.stackButtonView.heightAnchor.constraint(equalToConstant: 200),
+//            self.stackButtonView.widthAnchor.constraint(equalToConstant: 200),
+        ].compactMap({ $0 }))
         
     }
     
@@ -83,4 +85,3 @@ struct Post {
     
     let title: String
 }
-
